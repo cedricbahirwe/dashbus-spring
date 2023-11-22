@@ -30,4 +30,12 @@ public class AcademicUnitService {
     public List<AcademicUnit> getAcademicUnits() {
         return academicUnitRepository.findAll();
     }
+
+    public void deleteAcademicUnit(Long academicUnitId) throws Exception {
+        if (academicUnitRepository.findById(academicUnitId).isPresent()) {
+            academicUnitRepository.deleteById(academicUnitId);
+        } else {
+            throw new Exception("Academic Unit does not exist");
+        }
+    }
 }

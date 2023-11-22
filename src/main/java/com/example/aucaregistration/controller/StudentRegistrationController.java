@@ -104,4 +104,14 @@ public class StudentRegistrationController {
                 .toList();
         return ResponseEntity.ok(students);
     }
+
+    @DeleteMapping(value = "/{studentRegistrationId}")
+    public ResponseEntity<?> deleteStudentRegistration(@PathVariable Long studentRegistrationId) {
+        try {
+            studentRegistrationService.deleteStudentRegistration(studentRegistrationId);
+            return new ResponseEntity<>("Student Registration Deleted", HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

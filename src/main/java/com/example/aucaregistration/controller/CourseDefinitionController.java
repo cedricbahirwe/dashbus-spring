@@ -45,4 +45,14 @@ public class CourseDefinitionController {
         List<CourseDefinition> courseDefinitions = courseDefinitionService.getCourseDefinitions();
         return ResponseEntity.ok(courseDefinitions);
     }
+
+    @DeleteMapping(value = "/{courseDefinitionId}")
+    public ResponseEntity<?> deleteCourseDefinition(@PathVariable Long courseDefinitionId) {
+        try {
+            courseDefinitionService.deleteCourseDefinition(courseDefinitionId);
+            return new ResponseEntity<>("Course Definition Deleted", HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

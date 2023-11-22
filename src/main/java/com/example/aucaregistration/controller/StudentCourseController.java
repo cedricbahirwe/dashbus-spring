@@ -71,4 +71,14 @@ public class StudentCourseController {
                 .toList();
         return ResponseEntity.ok(courses);
     }
+
+    @DeleteMapping(value = "/{studentCourseId}")
+    public ResponseEntity<?> deleteStudentCourse(@PathVariable Long studentCourseId) {
+        try {
+            studentCourseService.deleteStudentCourse(studentCourseId);
+            return new ResponseEntity<>("Student Course Deleted", HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

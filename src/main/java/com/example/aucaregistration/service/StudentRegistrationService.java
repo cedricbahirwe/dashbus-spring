@@ -33,12 +33,11 @@ public class StudentRegistrationService {
         return studentRegistrationRepository.findAll();
     }
 
-    public boolean deleteStudentRegistration(Long studentRegistrationId) {
+    public void deleteStudentRegistration(Long studentRegistrationId) throws Exception {
         if (studentRegistrationRepository.findById(studentRegistrationId).isPresent()) {
             studentRegistrationRepository.deleteById(studentRegistrationId);
-            return true;
         } else {
-            return false;
+            throw new Exception("") ;
         }
     }
 

@@ -45,4 +45,14 @@ public class TeacherController {
         List<Teacher> teachers = teacherService.getTeachers();
         return ResponseEntity.ok(teachers);
     }
+
+    @DeleteMapping(value = "/{teacherId}")
+    public ResponseEntity<?> deleteTeacher(@PathVariable Long teacherId) {
+        try {
+            teacherService.deleteTeacher(teacherId);
+            return new ResponseEntity<>("Teacher Deleted", HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

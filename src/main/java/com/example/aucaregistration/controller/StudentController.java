@@ -45,4 +45,14 @@ public class StudentController {
         List<Student> students = studentService.getStudents();
         return ResponseEntity.ok(students);
     }
+
+    @DeleteMapping(value = "/{studentId}")
+    public ResponseEntity<?> deleteStudent(@PathVariable Long studentId) {
+        try {
+            studentService.deleteStudent(studentId);
+            return new ResponseEntity<>("Student Deleted", HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

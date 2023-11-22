@@ -28,12 +28,11 @@ public class CourseDefinitionService {
         return courseDefinitionRepository.findAll();
     }
 
-    public boolean deleteCourseDefinition(Long coursedDefinitionId) {
+    public void deleteCourseDefinition(Long coursedDefinitionId) throws Exception {
         if (courseDefinitionRepository.findById(coursedDefinitionId).isPresent()) {
             courseDefinitionRepository.deleteById(coursedDefinitionId);
-            return true;
         } else {
-            return false;
+            throw new Exception("Course not found");
         }
     }
 }

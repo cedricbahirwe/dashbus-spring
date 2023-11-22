@@ -45,4 +45,14 @@ public class AcademicUnitController {
         List<AcademicUnit> academicUnits = academicUnitService.getAcademicUnits();
         return ResponseEntity.ok(academicUnits);
     }
+
+    @DeleteMapping(value = "/{academicUnitId}")
+    public ResponseEntity<?> deleteCourseDefinition(@PathVariable Long academicUnitId) {
+        try {
+            academicUnitService.deleteAcademicUnit(academicUnitId);
+            return new ResponseEntity<>("Academic Unit Deleted", HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

@@ -45,4 +45,13 @@ public class SemesterController {
         List<Semester> semesters = semesterService.getSemesters();
         return ResponseEntity.ok(semesters);
     }
+    @DeleteMapping(value = "/{semesterId}")
+    public ResponseEntity<?> deleteSemester(@PathVariable Long semesterId) {
+        try {
+            semesterService.deleteSemester(semesterId);
+            return new ResponseEntity<>("Semester Deleted", HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

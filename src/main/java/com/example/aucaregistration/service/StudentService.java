@@ -30,4 +30,12 @@ public class StudentService {
     public List<Student> getStudents() {
         return studentRepository.findAll();
     }
+
+    public void deleteStudent(Long studentId) throws Exception {
+        if (studentRepository.findById(studentId).isPresent()) {
+            studentRepository.deleteById(studentId);
+        } else {
+            throw new Exception("Student");
+        }
+    }
 }
