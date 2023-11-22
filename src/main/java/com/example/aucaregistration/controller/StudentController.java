@@ -26,7 +26,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping(value = "/saveStudent")
+    @PostMapping(value = "/save")
     public ResponseEntity<?> saveStudent(@RequestBody Student student) {
         if (student != null) {
             String saveOneStudent = studentService.saveStudent(student);

@@ -19,16 +19,16 @@ public class AcademicUnitService {
         this.academicUnitRepository = academicUnitRepository;
     }
 
-    public String saveAcademicUnit(AcademicUnit academicUnit) {
+    public boolean saveAcademicUnit(AcademicUnit academicUnit) {
         if (academicUnit!= null) {
             academicUnitRepository.save(academicUnit);
-            return "AcademicUnit saved successfully";
+            return true;
         } else {
-            return null;
+            return false;
         }
     }
 
-    public List<AcademicUnit> getAllAcademicUnits() {
+    public List<AcademicUnit> getAcademicUnits() {
         return academicUnitRepository.findAll();
     }
 }
