@@ -18,12 +18,12 @@ public class StudentService {
     }
 
     public String saveStudent(Student student) {
-        if (student != null) {
-            // check if data des not exist !?
+        List<Student> existingStudents = studentRepository.findByFullName(student.getFullName());
+        if (existingStudents.isEmpty()) {
             studentRepository.save(student);
             return "Student saved successfully";
         } else {
-            return null;
+            return "Student already exists";
         }
     }
 

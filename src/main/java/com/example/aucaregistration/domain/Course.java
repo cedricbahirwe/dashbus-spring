@@ -2,13 +2,12 @@ package com.example.aucaregistration.domain;
 
 import jakarta.persistence.*;
 
-import java.util.UUID;
-
 @Entity
 @Table(name="course_table")
 public class Course {
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @ManyToOne
     @JoinColumn(name = "semesterId")
     private Semester semester;
@@ -25,19 +24,18 @@ public class Course {
     public Course() {
     }
 
-    public Course(UUID id, Semester semester, Teacher teacher, CourseDefinition courseDefinition, AcademicUnit department) {
-        this.id = id;
+    public Course(Semester semester, Teacher teacher, CourseDefinition courseDefinition, AcademicUnit department) {
         this.semester = semester;
         this.teacher = teacher;
         this.courseDefinition = courseDefinition;
         this.department = department;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

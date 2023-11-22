@@ -8,7 +8,8 @@ import java.util.UUID;
 @Table(name = "teacher_table")
 public class Teacher {
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String code;
     private String name;
     @Enumerated(EnumType.STRING)
@@ -17,18 +18,17 @@ public class Teacher {
     public Teacher() {
     }
 
-    public Teacher(UUID id, String code, String name, EQualification qualification) {
-        this.id = id;
+    public Teacher(String code, String name, EQualification qualification) {
         this.code = code;
         this.name = name;
         this.qualification = qualification;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

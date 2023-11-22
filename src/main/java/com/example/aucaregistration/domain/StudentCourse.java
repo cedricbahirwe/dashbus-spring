@@ -8,7 +8,8 @@ import java.util.UUID;
 @Table(name="student_course_table")
 public class StudentCourse {
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private Integer credits;
     private String results;
     @ManyToOne
@@ -21,19 +22,18 @@ public class StudentCourse {
     public StudentCourse() {
     }
 
-    public StudentCourse(UUID id, Integer credits, String results, StudentRegistration studentRegistration, Course course) {
-        this.id = id;
+    public StudentCourse(Integer credits, String results, StudentRegistration studentRegistration, Course course) {
         this.credits = credits;
         this.results = results;
         this.studentRegistration = studentRegistration;
         this.course = course;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

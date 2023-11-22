@@ -9,7 +9,8 @@ import java.util.UUID;
 @Table(name="student_registration_table")
 public class StudentRegistration {
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private LocalDate registrationDate;
     @ManyToOne
     @JoinColumn(name = "studentId")
@@ -24,19 +25,18 @@ public class StudentRegistration {
     public StudentRegistration() {
     }
 
-    public StudentRegistration(UUID id, LocalDate registrationDate, Student student, AcademicUnit unit, Semester semester) {
-        this.id = id;
+    public StudentRegistration(LocalDate registrationDate, Student student, AcademicUnit unit, Semester semester) {
         this.registrationDate = registrationDate;
         this.student = student;
         this.unit = unit;
         this.semester = semester;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 
