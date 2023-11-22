@@ -1,11 +1,14 @@
 package com.example.aucaregistration.service;
 
+import com.example.aucaregistration.domain.AcademicUnit;
+import com.example.aucaregistration.domain.Semester;
 import com.example.aucaregistration.domain.StudentRegistration;
 import com.example.aucaregistration.repository.StudentRegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class StudentRegistrationService {
@@ -17,12 +20,11 @@ public class StudentRegistrationService {
         this.studentRegistrationRepository = studentRegistrationRepository;
     }
 
-    public boolean saveStudentRegistration(StudentRegistration studentRegistration) {
+    public StudentRegistration saveStudentRegistration(StudentRegistration studentRegistration) throws Exception {
         if (studentRegistration != null) {
-            studentRegistrationRepository.save(studentRegistration);
-            return true;
+            return studentRegistrationRepository.save(studentRegistration);
         } else {
-            return false;
+            throw new Exception("Unable to save Student Registration");
         }
     }
 
@@ -31,13 +33,24 @@ public class StudentRegistrationService {
         return studentRegistrationRepository.findAll();
     }
 
-    public boolean deleteStudentRegistration(int studentRegistrationId) {
+    public boolean deleteStudentRegistration(Long studentRegistrationId) {
         if (studentRegistrationRepository.findById(studentRegistrationId).isPresent()) {
             studentRegistrationRepository.deleteById(studentRegistrationId);
             return true;
         } else {
             return false;
         }
+    }
+
+    public List<StudentRegistration> getStudentBySemesterAndDepartment(Semester semester, AcademicUnit unit) {
+        return studentRegistrationRepository.getStudentBySemesterAndUnit(semester, unit);
+    }
+    public List<StudentRegistration> getStudentBySemester(Semester semester) {
+        return studentRegistrationRepository.getStudentBySemester(semester);
+    }
+
+    public List<StudentRegistration> getStudentByUnit(AcademicUnit unit) {
+        return studentRegistrationRepository.getStudentByUnit(unit);
     }
 }
 

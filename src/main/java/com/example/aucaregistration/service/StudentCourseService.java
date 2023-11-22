@@ -1,5 +1,7 @@
 package com.example.aucaregistration.service;
 
+import com.example.aucaregistration.domain.Course;
+import com.example.aucaregistration.domain.Semester;
 import com.example.aucaregistration.domain.StudentCourse;
 import com.example.aucaregistration.repository.StudentCourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,11 @@ public class StudentCourseService {
         this.studentCourseRepository = studentCourseRepository;
     }
 
-    public Boolean saveStudentCourse(StudentCourse studentCourse) {
+    public StudentCourse saveStudentCourse(StudentCourse studentCourse) throws Exception {
         if (studentCourse != null) {
-            studentCourseRepository.save(studentCourse);
-            return true;
+            return studentCourseRepository.save(studentCourse);
         } else {
-            return false;
+            throw new Exception("Unable to save Student Course");
         }
     }
 
@@ -29,7 +30,16 @@ public class StudentCourseService {
         return studentCourseRepository.findAll();
     }
 
-    public boolean deleteStudentCourse(Integer studentCourseId) {
+    public  List<StudentCourse> getStudentByCourseAndSemester(Long courseId, Long semesterId) {
+        return studentCourseRepository.findByCourseCourseDefinitionIdAndStudentRegistrationSemesterId(courseId, semesterId);
+    }
+
+
+    public List<StudentCourse> findCoursesStudentId(Long studentId) {
+        return studentCourseRepository.findByStudentRegistrationStudentStudentId(studentId);
+    }
+
+    public boolean deleteStudentCourse(Long studentCourseId) {
         if (studentCourseRepository.findById(studentCourseId).isPresent()) {
             studentCourseRepository.deleteById(studentCourseId);
             return true;

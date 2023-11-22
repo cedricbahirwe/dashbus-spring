@@ -29,11 +29,11 @@ public class CourseDefinitionController {
     @PostMapping(value = "/save")
     public ResponseEntity<?> saveCourseDefinition(@RequestBody CourseDefinition courseDefinition) {
         if (courseDefinition != null) {
-            boolean success = courseDefinitionService.saveCourseDefinition(courseDefinition);
-            if (success) {
-                return new ResponseEntity<>("CourseDefinition saved", HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("Something is wrong!", HttpStatus.BAD_REQUEST);
+            try {
+                CourseDefinition newCourseDef = courseDefinitionService.saveCourseDefinition(courseDefinition);
+                return new ResponseEntity<>(newCourseDef, HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         } else {
             return new ResponseEntity<>("Empty data not allowed!", HttpStatus.BAD_REQUEST);

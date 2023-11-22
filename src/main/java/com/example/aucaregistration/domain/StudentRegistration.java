@@ -10,7 +10,7 @@ import java.util.UUID;
 public class StudentRegistration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private LocalDate registrationDate;
     @ManyToOne
     @JoinColumn(name = "studentId")
@@ -32,11 +32,11 @@ public class StudentRegistration {
         this.semester = semester;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

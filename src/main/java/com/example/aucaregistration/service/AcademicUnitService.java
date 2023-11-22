@@ -19,12 +19,11 @@ public class AcademicUnitService {
         this.academicUnitRepository = academicUnitRepository;
     }
 
-    public boolean saveAcademicUnit(AcademicUnit academicUnit) {
+    public AcademicUnit saveAcademicUnit(AcademicUnit academicUnit) throws Exception {
         if (academicUnit!= null) {
-            academicUnitRepository.save(academicUnit);
-            return true;
+            return academicUnitRepository.save(academicUnit);
         } else {
-            return false;
+            throw new Exception("Unable to save academic unit");
         }
     }
 

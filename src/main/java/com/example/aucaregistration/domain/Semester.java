@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Semester {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -24,11 +24,11 @@ public class Semester {
         this.endDate = endDate;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

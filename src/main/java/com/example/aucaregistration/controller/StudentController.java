@@ -29,11 +29,11 @@ public class StudentController {
     @PostMapping(value = "/save")
     public ResponseEntity<?> saveStudent(@RequestBody Student student) {
         if (student != null) {
-            String saveOneStudent = studentService.saveStudent(student);
-            if (saveOneStudent != null) {
-                return new ResponseEntity<>("Student saved", HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("Something is wrong!", HttpStatus.BAD_REQUEST);
+            try {
+                Student savedStudent = studentService.saveStudent(student);
+                return new ResponseEntity<>(student, HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         } else {
             return new ResponseEntity<>("Empty data not allowed!", HttpStatus.BAD_REQUEST);

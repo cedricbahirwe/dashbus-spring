@@ -9,7 +9,7 @@ import java.util.UUID;
 public class StudentCourse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private Integer credits;
     private String results;
     @ManyToOne
@@ -29,11 +29,11 @@ public class StudentCourse {
         this.course = course;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

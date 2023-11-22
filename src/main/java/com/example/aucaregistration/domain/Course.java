@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "semesterId")
     private Semester semester;
@@ -19,23 +19,23 @@ public class Course {
     private CourseDefinition courseDefinition;
     @ManyToOne
     @JoinColumn(name = "unitId")
-    private AcademicUnit department;
+    private AcademicUnit unit;
 
     public Course() {
     }
 
-    public Course(Semester semester, Teacher teacher, CourseDefinition courseDefinition, AcademicUnit department) {
+    public Course(Semester semester, Teacher teacher, CourseDefinition courseDefinition, AcademicUnit unit) {
         this.semester = semester;
         this.teacher = teacher;
         this.courseDefinition = courseDefinition;
-        this.department = department;
+        this.unit = unit;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -63,11 +63,11 @@ public class Course {
         this.courseDefinition = courseDefinition;
     }
 
-    public AcademicUnit getDepartment() {
-        return department;
+    public AcademicUnit getUnit() {
+        return unit;
     }
 
-    public void setDepartment(AcademicUnit department) {
-        this.department = department;
+    public void setUnit(AcademicUnit unit) {
+        this.unit = unit;
     }
 }

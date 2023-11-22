@@ -29,11 +29,11 @@ public class SemesterController {
     @PostMapping(value = "/save")
     public ResponseEntity<?> saveSemester(@RequestBody Semester semester) {
         if (semester != null) {
-            boolean success = semesterService.saveSemester(semester);
-            if (success) {
-                return new ResponseEntity<>("Semester saved", HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("Something is wrong!", HttpStatus.BAD_REQUEST);
+            try {
+                Semester newSemester = semesterService.saveSemester(semester);
+                return new ResponseEntity<>(newSemester, HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         } else {
             return new ResponseEntity<>("Empty data not allowed!", HttpStatus.BAD_REQUEST);

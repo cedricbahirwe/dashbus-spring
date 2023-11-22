@@ -8,8 +8,9 @@ import java.util.UUID;
 @Table(name = "teacher_table")
 public class Teacher {
     @Id
+    @Column(name = "teacher_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String code;
     private String name;
     @Enumerated(EnumType.STRING)
@@ -24,11 +25,11 @@ public class Teacher {
         this.qualification = qualification;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

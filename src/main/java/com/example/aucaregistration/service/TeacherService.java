@@ -17,12 +17,11 @@ public class TeacherService {
         this.teacherRepository = teacherRepository;
     }
 
-    public Boolean saveTeacher(Teacher teacher) {
+    public Teacher saveTeacher(Teacher teacher) throws Exception {
         if (teacher != null) {
-            teacherRepository.save(teacher);
-            return true;
+            return teacherRepository.save(teacher);
         } else {
-            return false;
+            throw new Exception("Unable to save teacher");
         }
     }
 
@@ -30,7 +29,7 @@ public class TeacherService {
         return teacherRepository.findAll();
     }
 
-    public boolean deleteTeacher(Integer teacherId) {
+    public boolean deleteTeacher(Long teacherId) {
         if (teacherRepository.findById(teacherId).isPresent()) {
             teacherRepository.deleteById(teacherId);
             return true;

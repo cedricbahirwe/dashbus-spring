@@ -16,12 +16,11 @@ public class CourseDefinitionService {
         this.courseDefinitionRepository = courseDefinitionRepository;
     }
     
-    public boolean saveCourseDefinition(CourseDefinition courseDefinition) {
+    public CourseDefinition saveCourseDefinition(CourseDefinition courseDefinition) throws Exception {
         if (courseDefinition != null) {
-            courseDefinitionRepository.save(courseDefinition);
-            return true;
+            return courseDefinitionRepository.save(courseDefinition);
         } else {
-            return false;
+            throw new Exception("Unable to save Course Definition");
         }
     }
 
@@ -29,7 +28,7 @@ public class CourseDefinitionService {
         return courseDefinitionRepository.findAll();
     }
 
-    public boolean deleteCourseDefinition(Integer coursedDefinitionId) {
+    public boolean deleteCourseDefinition(Long coursedDefinitionId) {
         if (courseDefinitionRepository.findById(coursedDefinitionId).isPresent()) {
             courseDefinitionRepository.deleteById(coursedDefinitionId);
             return true;

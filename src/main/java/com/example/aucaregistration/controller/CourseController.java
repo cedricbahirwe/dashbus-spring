@@ -29,11 +29,11 @@ public class CourseController {
     @PostMapping(value = "/save")
     public ResponseEntity<?> saveCourse(@RequestBody Course course) {
         if (course != null) {
-            boolean success = courseService.saveCourse(course);
-            if (success) {
-                return new ResponseEntity<>("Course saved", HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("Something is wrong!", HttpStatus.BAD_REQUEST);
+            try {
+                Course newCourse = courseService.saveCourse(course);
+                return new ResponseEntity<>(newCourse, HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         } else {
             return new ResponseEntity<>("Empty data not allowed!", HttpStatus.BAD_REQUEST);
@@ -45,4 +45,15 @@ public class CourseController {
         List<Course> courses = courseService.getCourses();
         return ResponseEntity.ok(courses);
     }
+
+    @GetMapping (value = "/list")
+    public ResponseEntity<List<Course>> findCoursesByDepartmentAndSemester(
+            @RequestParam Long departmentId,
+            @RequestParam Long semesterId
+    ) {
+        List<Course> courses = courseService.findCoursesByDepartmentAndSemester(departmentId, semesterId);
+        return ResponseEntity.ok(courses);
+    }
+
+
 }

@@ -17,12 +17,11 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
-    public Boolean saveCourse(Course course) {
+    public Course saveCourse(Course course) throws Exception {
         if (course != null) {
-            courseRepository.save(course);
-            return true;
+            return courseRepository.save(course);
         } else {
-            return false;
+            throw new Exception("Unable to save Course");
         }
     }
 
@@ -30,7 +29,11 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-    public boolean deleteCourse(Integer courseId) {
+    public  List<Course> findCoursesByDepartmentAndSemester(Long departmentId, Long semesterId) {
+        return courseRepository.findBySemesterIdAndUnitId(semesterId, departmentId);
+    }
+
+    public boolean deleteCourse(Long courseId) {
         if (courseRepository.findById(courseId).isPresent()) {
             courseRepository.deleteById(courseId);
             return true;

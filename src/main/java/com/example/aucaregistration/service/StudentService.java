@@ -1,6 +1,7 @@
 package com.example.aucaregistration.service;
 
 import com.example.aucaregistration.domain.Student;
+import com.example.aucaregistration.domain.StudentRegistration;
 import com.example.aucaregistration.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,13 +18,12 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public String saveStudent(Student student) {
+    public Student saveStudent(Student student) throws Exception {
         List<Student> existingStudents = studentRepository.findByFullName(student.getFullName());
         if (existingStudents.isEmpty()) {
-            studentRepository.save(student);
-            return "Student saved successfully";
+            return studentRepository.save(student);
         } else {
-            return "Student already exists";
+            throw new Exception("Student already exists");
         }
     }
 

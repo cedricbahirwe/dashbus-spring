@@ -16,12 +16,11 @@ public class SemesterService {
         this.semesterRepository = semesterRepository;
     }
 
-    public Boolean saveSemester(Semester semester) {
+    public Semester saveSemester(Semester semester) throws Exception {
         if (semester != null) {
-            semesterRepository.save(semester);
-            return true;
+            return semesterRepository.save(semester);
         } else {
-            return false;
+            throw new Exception("Unable to save semester");
         }
     }
 
@@ -29,7 +28,7 @@ public class SemesterService {
         return semesterRepository.findAll();
     }
 
-    public boolean deleteSemester(Integer semesterId) {
+    public boolean deleteSemester(Long semesterId) {
         if (semesterRepository.findById(semesterId).isPresent()) {
             semesterRepository.deleteById(semesterId);
             return true;
