@@ -29,12 +29,11 @@ public class TeacherService {
         return teacherRepository.findAll();
     }
 
-    public boolean deleteTeacher(Long teacherId) {
+    public void deleteTeacher(Long teacherId) throws Exception {
         if (teacherRepository.findById(teacherId).isPresent()) {
             teacherRepository.deleteById(teacherId);
-            return true;
         } else {
-            return false;
+            throw new Exception("Unable to find this teacher");
         }
     }
 }
