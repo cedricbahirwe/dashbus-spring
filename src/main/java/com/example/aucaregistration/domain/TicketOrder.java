@@ -3,20 +3,25 @@ package com.example.aucaregistration.domain;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "ticket_orders")
-public class BusTicketOrder {
+public class TicketOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     @OneToOne
     @JoinColumn(name = "ticketId")
-    BusTicket ticket;
+    Ticket ticket;
 
     @OneToOne
     @JoinColumn(name = "clientId")
-    BusClient client;
+    Client client;
+
+    PaymentMethod paymentType;
+
+    int numberOfTickets;
+
+    String qrCodeId;
+
 }

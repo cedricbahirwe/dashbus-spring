@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "clients")
-public class BusClient {
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
@@ -18,5 +18,8 @@ public class BusClient {
 
     LocalDate dob;
 
+    String phoneNumber;
+
+    String email;
 
 }
