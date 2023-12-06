@@ -2,6 +2,7 @@ package com.example.aucaregistration.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 
@@ -12,6 +13,9 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "first_name")
     private String firstName;
@@ -27,19 +31,32 @@ public class Client {
 
     private String email;
 
+    private String password;
+
+    @CreationTimestamp
+    @Column(name = "joined_date", updatable = false)
+    LocalDate joinedDate;
+
     public Client() {
     }
 
-    public Client(String firstName, String lastName, LocalDate dob, String phoneNumber, String email) {
+
+    public Client(String username, String firstName, String lastName, LocalDate dob, String phoneNumber, String email, String password) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.password = password;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setFirstName(String firstName) {
@@ -62,15 +79,7 @@ public class Client {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dob=" + dob +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

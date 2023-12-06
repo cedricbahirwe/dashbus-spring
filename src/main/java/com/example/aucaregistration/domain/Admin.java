@@ -2,7 +2,6 @@ package com.example.aucaregistration.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-
 import java.time.LocalDate;
 
 
@@ -28,17 +27,19 @@ public class Admin {
 
     private String email;
 
+    @Getter
     private UserRole role;
 
     public Admin() {
     }
 
-    public Admin(String firstName, String lastName, LocalDate dob, String phoneNumber, String email) {
+    public Admin(String firstName, String lastName, LocalDate dob, String phoneNumber, String email, UserRole role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.role = role;
     }
 
     public void setId(int id) {
@@ -65,15 +66,7 @@ public class Admin {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dob=" + dob +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }

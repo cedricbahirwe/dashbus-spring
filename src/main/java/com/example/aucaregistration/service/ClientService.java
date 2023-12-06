@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -41,6 +42,16 @@ public class ClientService {
             return clientRepository.save(client);
         } else {
             throw new Exception("Client with the provided ID was not found.");
+        }
+    }
+
+    public Client getClientByUsername(String username) throws Exception {
+        Optional<Client> optionalClient = clientRepository.findByUsername(username);
+
+        if (optionalClient.isPresent()) {
+            return optionalClient.get();
+        } else {
+            throw new Exception("Client with the provided username was not found.");
         }
     }
 }
