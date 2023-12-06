@@ -27,4 +27,16 @@ public class Ticket {
     LocalDate departureDateTime;
     LocalDate arrivalDateTime;
 
+    public Ticket() {
+    }
+
+    public Ticket(int defaultPlaces, int remainingPlaces, double price, StopLocation origin, StopLocation destination, LocalDate departureDateTime, LocalDate arrivalDateTime) {
+        this.defaultPlaces = defaultPlaces;
+        this.remainingPlaces = remainingPlaces;
+        this.price = price;
+        this.origin = origin;
+        this.destination = destination;
+        this.departureDateTime = departureDateTime;
+        this.arrivalDateTime = arrivalDateTime;
+    }
 }

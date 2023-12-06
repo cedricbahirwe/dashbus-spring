@@ -28,11 +28,19 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public void deleteClientById(Long clientId) throws Exception {
+    public void deleteClientById(int clientId) throws Exception {
         if (clientRepository.findById(clientId).isPresent()) {
             clientRepository.deleteById(clientId);
         } else {
             throw new Exception("Client not found");
+        }
+    }
+
+    public Client updateClientbyId(Client client) throws Exception {
+        if (clientRepository.findById(client.getId()).isPresent()) {
+            return clientRepository.save(client);
+        } else {
+            throw new Exception("Client with the provided ID was not found.");
         }
     }
 }

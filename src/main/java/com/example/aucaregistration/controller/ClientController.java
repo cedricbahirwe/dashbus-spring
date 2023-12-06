@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(
-        value = "/clients",
+        value = "/client",
         consumes = {MediaType.APPLICATION_JSON_VALUE},
         produces = {MediaType.APPLICATION_JSON_VALUE}
 )
@@ -25,10 +25,12 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @PostMapping(value = "/save")
+    @PostMapping(value = "/register")
     public ResponseEntity<?> saveStudent(@RequestBody Client client) {
         if (client != null) {
             try {
+
+                System.out.println("I found" + client);
                 Client saveClient = clientService.saveClient(client);
                 return new ResponseEntity<>(saveClient, HttpStatus.CREATED);
             } catch (Exception e) {
@@ -46,10 +48,21 @@ public class ClientController {
     }
 
     @DeleteMapping(value = "/{clientId}")
-    public ResponseEntity<?> deleteClient(@PathVariable Long clientId) {
+    public ResponseEntity<?> deleteClient(@PathVariable int clientId) {
         try {
             clientService.deleteClientById(clientId);
             return new ResponseEntity<>("Client Deleted", HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PatchMapping(value = "/{clientId}")
+    public ResponseEntity<?> updateClient( @PathVariable int clientId,  @RequestBody Client client) {
+        try {
+            client.setId(clientId);
+            Client updatedClient = clientService.updateClientbyId(client);
+            return new ResponseEntity<>(updatedClient, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

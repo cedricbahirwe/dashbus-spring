@@ -1,25 +1,76 @@
 package com.example.aucaregistration.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
 
-
+@Getter
 @Entity
 @Table(name = "clients")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
-    String firstName;
+    @Column(name = "first_name")
+    private String firstName;
 
-    String lastName;
+    @Column(name = "last_name")
+    private String lastName;
 
-    LocalDate dob;
+    @Column(name = "dob")
+    private LocalDate dob;
 
-    String phoneNumber;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
-    String email;
+    private String email;
 
+    public Client() {
+    }
+
+    public Client(String firstName, String lastName, LocalDate dob, String phoneNumber, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dob=" + dob +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

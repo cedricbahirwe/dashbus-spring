@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(
-        value = "/tickets",
+        value = "/ticket",
         consumes = {MediaType.APPLICATION_JSON_VALUE},
         produces = {MediaType.APPLICATION_JSON_VALUE}
 )
