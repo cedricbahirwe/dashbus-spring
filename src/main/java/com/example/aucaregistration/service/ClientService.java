@@ -37,7 +37,7 @@ public class ClientService {
         }
     }
 
-    public Client updateClientbyId(Client client) throws Exception {
+    public Client updateClientById(Client client) throws Exception {
         if (clientRepository.findById(client.getId()).isPresent()) {
             return clientRepository.save(client);
         } else {

@@ -67,7 +67,7 @@ public class ClientController {
     public ResponseEntity<?> updateClient( @PathVariable int clientId,  @RequestBody Client client) {
         try {
             client.setId(clientId);
-            Client updatedClient = clientService.updateClientbyId(client);
+            Client updatedClient = clientService.updateClientById(client);
             return new ResponseEntity<>(updatedClient, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
