@@ -1,6 +1,7 @@
 package com.example.aucaregistration.controller;
 
-import com.example.aucaregistration.domain.Client;
+import com.example.aucaregistration.domain.Admin;
+import com.example.aucaregistration.service.AdminService;
 import com.example.aucaregistration.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,20 +17,20 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping(
-        value = "/client",
+        value = "/admin",
         produces = {MediaType.APPLICATION_JSON_VALUE}
 )
-public class ClientController {
+public class AdminController {
 
-    private final ClientService clientService;
+    private final AdminService adminService;
 
     @Autowired
-    public ClientController(ClientService clientService) {
-        this.clientService = clientService;
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<?> saveStudent(@RequestBody Client client) {
+    public ResponseEntity<?> saveStudent(@RequestBody Admin client) {
         if (client != null) {
             try {
 
@@ -37,8 +38,8 @@ public class ClientController {
                 String hashedPassword = encrypt(passwordToHash);
                 client.setPassword(hashedPassword);
 
-                Client saveClient = clientService.saveClient(client);
-                return new ResponseEntity<>(saveClient, HttpStatus.CREATED);
+                Admin saveAdmin = adminService.saveAdmin(client);
+                return new ResponseEntity<>(saveAdmin, HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
@@ -48,46 +49,48 @@ public class ClientController {
     }
 
     @GetMapping(value = "/")
-    public ResponseEntity<List<Client>> getAllClients() {
-        List<Client> clients = clientService.getClients();
+    public ResponseEntity<List<Admin>> getAllAdmins() {
+        List<Admin> clients = adminService.getAdmins();
         return ResponseEntity.ok(clients);
     }
 
     @DeleteMapping(value = "/{clientId}")
-    public ResponseEntity<?> deleteClient(@PathVariable int clientId) {
+    public ResponseEntity<?> deleteAdmin(@PathVariable int clientId) {
         try {
-            clientService.deleteClientById(clientId);
-            return new ResponseEntity<>("Client Deleted", HttpStatus.NO_CONTENT);
+            adminService.deleteAdminById(clientId);
+            return new ResponseEntity<>("Admin Deleted", HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
     @PatchMapping(value = "/{clientId}")
-    public ResponseEntity<?> updateClient( @PathVariable int clientId,  @RequestBody Client client) {
+    public ResponseEntity<?> updateAdmin(@PathVariable int clientId, @RequestBody Admin client) {
         try {
             client.setId(clientId);
-            Client updatedClient = clientService.updateClientById(client);
-            return new ResponseEntity<>(updatedClient, HttpStatus.OK);
+            Admin updatedAdmin = adminService.updateAdminById(client);
+            return new ResponseEntity<>(updatedAdmin, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<?> login(@RequestBody LoginForm loginForm) {
+    public ResponseEntity<?> login(@RequestBody com.example.aucaregistration.controller.AdminController.LoginForm loginForm) {
         try {
             String username = loginForm.getUsername();
             String password = loginForm.getPassword();
 
-            if (username.isEmpty() || password.isEmpty()) { return null; }
+            if (username.isEmpty() || password.isEmpty()) {
+                return null;
+            }
 
             String hashedPassword = encrypt(password);
 
-            Client existingClient = clientService.getClientByUsername(username);
+            Admin existingAdmin = adminService.getAdminByUsername(username);
 
-            if (hashedPassword.equals(existingClient.getPassword())) {
-                return new ResponseEntity<>(existingClient, HttpStatus.OK);
+            if (hashedPassword.equals(existingAdmin.getPassword())) {
+                return new ResponseEntity<>(existingAdmin, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Password does not match", HttpStatus.UNAUTHORIZED);
             }
@@ -120,6 +123,7 @@ public class ClientController {
     }
 
     private static final String secretKey = "8dGaqPlIvBlTJlPZzZq6wg==";
+
     public static String encrypt(String password) throws Exception {
         Cipher cipher = Cipher.getInstance("AES");
         SecretKeySpec keySpec = new SecretKeySpec(secretKey.getBytes(), "AES");
@@ -138,4 +142,3 @@ public class ClientController {
         return new String(decrypted);
     }
 }
-

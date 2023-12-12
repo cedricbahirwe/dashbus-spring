@@ -19,6 +19,9 @@ public class Admin {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "dob")
     private LocalDate dob;
 
@@ -27,15 +30,18 @@ public class Admin {
 
     private String email;
 
+    private String password;
+
     @Getter
     private UserRole role;
 
     public Admin() {
     }
 
-    public Admin(String firstName, String lastName, LocalDate dob, String phoneNumber, String email, UserRole role) {
+    public Admin(String firstName, String lastName, String username, LocalDate dob, String phoneNumber, String email, UserRole role) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = username;
         this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -64,6 +70,14 @@ public class Admin {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setRole(UserRole role) {
