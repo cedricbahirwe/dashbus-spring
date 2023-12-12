@@ -40,7 +40,6 @@ public class Client {
     public Client() {
     }
 
-
     public Client(String username, String firstName, String lastName, LocalDate dob, String phoneNumber, String email, String password) {
         this.username = username;
         this.firstName = firstName;

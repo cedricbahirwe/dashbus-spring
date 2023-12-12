@@ -24,8 +24,8 @@ public class TicketController {
         this.ticketService = ticketService;
     }
 
-    @PostMapping(value = "/save")
-    public ResponseEntity<?> saveStudent(@RequestBody Ticket ticket) {
+    @PostMapping(value = "/create")
+    public ResponseEntity<?> createTicket(@RequestBody Ticket ticket) {
         if (ticket != null) {
             try {
                 Ticket saveTicket = ticketService.saveTicket(ticket);

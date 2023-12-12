@@ -2,10 +2,12 @@ package com.example.aucaregistration.domain;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
 
 @Entity
+@Getter
 @Table(name = "tickets")
 public class Ticket {
     @Id
@@ -19,24 +21,64 @@ public class Ticket {
     double price;
 
     @OneToOne
+    @JoinColumn(name = "adminId")
+    Admin admin;
+
+    @OneToOne
     @JoinColumn(name = "originId")
     StopLocation origin;
+
     @OneToOne
     @JoinColumn(name = "destinationId")
     StopLocation destination;
+
     LocalDate departureDateTime;
+
     LocalDate arrivalDateTime;
 
     public Ticket() {
     }
 
-    public Ticket(int defaultPlaces, int remainingPlaces, double price, StopLocation origin, StopLocation destination, LocalDate departureDateTime, LocalDate arrivalDateTime) {
+    public Ticket(int defaultPlaces, int remainingPlaces, double price, Admin admin, StopLocation origin, StopLocation destination, LocalDate departureDateTime, LocalDate arrivalDateTime) {
         this.defaultPlaces = defaultPlaces;
         this.remainingPlaces = remainingPlaces;
         this.price = price;
+        this.admin = admin;
         this.origin = origin;
         this.destination = destination;
         this.departureDateTime = departureDateTime;
+        this.arrivalDateTime = arrivalDateTime;
+    }
+
+    public void setDefaultPlaces(int defaultPlaces) {
+        this.defaultPlaces = defaultPlaces;
+    }
+
+    public void setRemainingPlaces(int remainingPlaces) {
+        this.remainingPlaces = remainingPlaces;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public void setOrigin(StopLocation origin) {
+        this.origin = origin;
+    }
+
+    public void setDestination(StopLocation destination) {
+        this.destination = destination;
+    }
+
+    public void setDepartureDateTime(LocalDate departureDateTime) {
+        this.departureDateTime = departureDateTime;
+    }
+
+    public void setArrivalDateTime(LocalDate arrivalDateTime) {
         this.arrivalDateTime = arrivalDateTime;
     }
 }

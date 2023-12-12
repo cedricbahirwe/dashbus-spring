@@ -29,7 +29,7 @@ public class ClientController {
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<?> saveStudent(@RequestBody Client client) {
+    public ResponseEntity<?> saveClient(@RequestBody Client client) {
         if (client != null) {
             try {
 

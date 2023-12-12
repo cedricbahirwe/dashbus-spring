@@ -24,8 +24,8 @@ public class TicketOrderController {
         this.ticketOrderService = ticketOrderService;
     }
 
-    @PostMapping(value = "/save")
-    public ResponseEntity<?> saveStudent(@RequestBody TicketOrder ticketOrder) {
+    @PostMapping(value = "/create")
+    public ResponseEntity<?> createOrder(@RequestBody TicketOrder ticketOrder) {
         if (ticketOrder != null) {
             try {
                 TicketOrder saveTicketOrder = ticketOrderService.saveTicketOrder(ticketOrder);

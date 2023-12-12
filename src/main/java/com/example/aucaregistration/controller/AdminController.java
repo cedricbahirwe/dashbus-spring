@@ -2,7 +2,6 @@ package com.example.aucaregistration.controller;
 
 import com.example.aucaregistration.domain.Admin;
 import com.example.aucaregistration.service.AdminService;
-import com.example.aucaregistration.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,15 +29,15 @@ public class AdminController {
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<?> saveStudent(@RequestBody Admin client) {
-        if (client != null) {
+    public ResponseEntity<?> saveAdmin(@RequestBody Admin admin) {
+        if (admin != null) {
             try {
 
-                String passwordToHash = client.getPassword();
+                String passwordToHash = admin.getPassword();
                 String hashedPassword = encrypt(passwordToHash);
-                client.setPassword(hashedPassword);
+                admin.setPassword(hashedPassword);
 
-                Admin saveAdmin = adminService.saveAdmin(client);
+                Admin saveAdmin = adminService.saveAdmin(admin);
                 return new ResponseEntity<>(saveAdmin, HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -50,25 +49,25 @@ public class AdminController {
 
     @GetMapping(value = "/")
     public ResponseEntity<List<Admin>> getAllAdmins() {
-        List<Admin> clients = adminService.getAdmins();
-        return ResponseEntity.ok(clients);
+        List<Admin> admins = adminService.getAdmins();
+        return ResponseEntity.ok(admins);
     }
 
-    @DeleteMapping(value = "/{clientId}")
-    public ResponseEntity<?> deleteAdmin(@PathVariable int clientId) {
+    @DeleteMapping(value = "/{adminId}")
+    public ResponseEntity<?> deleteAdmin(@PathVariable int adminId) {
         try {
-            adminService.deleteAdminById(clientId);
+            adminService.deleteAdminById(adminId);
             return new ResponseEntity<>("Admin Deleted", HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
-    @PatchMapping(value = "/{clientId}")
-    public ResponseEntity<?> updateAdmin(@PathVariable int clientId, @RequestBody Admin client) {
+    @PatchMapping(value = "/{adminId}")
+    public ResponseEntity<?> updateAdmin(@PathVariable int adminId, @RequestBody Admin admin) {
         try {
-            client.setId(clientId);
-            Admin updatedAdmin = adminService.updateAdminById(client);
+            admin.setId(adminId);
+            Admin updatedAdmin = adminService.updateAdminById(admin);
             return new ResponseEntity<>(updatedAdmin, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
