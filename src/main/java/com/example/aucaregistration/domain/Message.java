@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Entity
@@ -23,12 +24,12 @@ public class Message {
 
     @CreationTimestamp
     @Column(name = "creation_date", updatable = false)
-    LocalDate creationDate;
+    LocalDateTime creationDate;
 
     public Message() {
     }
 
-    public Message(String sendNames, String senderEmail, String messageBody, LocalDate creationDate) {
+    public Message(String sendNames, String senderEmail, String messageBody, LocalDateTime creationDate) {
         this.sendNames = sendNames;
         this.senderEmail = senderEmail;
         this.messageBody = messageBody;
@@ -52,7 +53,7 @@ public class Message {
         this.messageBody = messageBody;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Entity
@@ -35,7 +36,7 @@ public class Client {
 
     @CreationTimestamp
     @Column(name = "joined_date", updatable = false)
-    LocalDate joinedDate;
+    LocalDateTime joinedDate = LocalDateTime.now();
 
     public Client() {
     }

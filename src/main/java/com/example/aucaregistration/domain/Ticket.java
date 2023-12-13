@@ -39,7 +39,7 @@ public class Ticket {
 
     LocalDateTime createdDateTime = LocalDateTime.now();
 
-    Double discount;
+    Double discount = 0.0;
 
     public Ticket() {
     }
