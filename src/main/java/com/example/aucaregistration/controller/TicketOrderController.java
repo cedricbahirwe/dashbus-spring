@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,10 @@ public class TicketOrderController {
 
                 ticketService.saveTicket(ticket);
 
+                // Current date and time
+                LocalDateTime currentDateTime = LocalDateTime.now();
+                System.out.println("Current Date and Time: " + currentDateTime);
+                ticketOrder.setDateTime(currentDateTime);
                 TicketOrder saveTicketOrder = ticketOrderService.saveTicketOrder(ticketOrder);
                 return ResponseEntity.status(HttpStatus.CREATED).body(saveTicketOrder);
 

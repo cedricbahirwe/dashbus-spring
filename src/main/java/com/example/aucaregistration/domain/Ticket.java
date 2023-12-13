@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -32,17 +33,18 @@ public class Ticket {
     @JoinColumn(name = "destinationId")
     StopLocation destination;
 
-    LocalDate departureDateTime;
+    LocalDateTime departureDateTime;
 
-    LocalDate arrivalDateTime;
+    LocalDateTime arrivalDateTime;
+
+    LocalDateTime createdDateTime = LocalDateTime.now();
 
     Double discount;
 
     public Ticket() {
     }
 
-
-    public Ticket(int defaultPlaces, int remainingPlaces, double price, Admin admin, StopLocation origin, StopLocation destination, LocalDate departureDateTime, LocalDate arrivalDateTime, Double discount) {
+    public Ticket(int defaultPlaces, int remainingPlaces, double price, Admin admin, StopLocation origin, StopLocation destination, LocalDateTime departureDateTime, LocalDateTime arrivalDateTime, LocalDateTime createdDateTime, Double discount) {
         this.defaultPlaces = defaultPlaces;
         this.remainingPlaces = remainingPlaces;
         this.price = price;
@@ -51,9 +53,9 @@ public class Ticket {
         this.destination = destination;
         this.departureDateTime = departureDateTime;
         this.arrivalDateTime = arrivalDateTime;
+        this.createdDateTime = createdDateTime;
         this.discount = discount;
     }
-
 
     public void setDefaultPlaces(int defaultPlaces) {
         this.defaultPlaces = defaultPlaces;
@@ -79,7 +81,7 @@ public class Ticket {
         this.destination = destination;
     }
 
-    public void setDepartureDateTime(LocalDate departureDateTime) {
+    public void setDepartureDateTime(LocalDateTime departureDateTime) {
         this.departureDateTime = departureDateTime;
     }
 
@@ -87,7 +89,11 @@ public class Ticket {
         this.discount = discount;
     }
 
-    public void setArrivalDateTime(LocalDate arrivalDateTime) {
+    public void setArrivalDateTime(LocalDateTime arrivalDateTime) {
         this.arrivalDateTime = arrivalDateTime;
+    }
+
+    public void setCreatedDateTime(LocalDateTime createdDateTime) {
+        this.createdDateTime = createdDateTime;
     }
 }

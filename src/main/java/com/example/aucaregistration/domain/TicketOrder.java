@@ -4,6 +4,8 @@ package com.example.aucaregistration.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Table(name = "ticket_orders")
@@ -22,19 +24,22 @@ public class TicketOrder {
 
     PaymentMethod paymentType;
 
-    int numberOfTickets;// Can i Provide default value
+    int numberOfTickets;
 
     String qrCodeId;
+
+    LocalDateTime dateTime = LocalDateTime.now();
 
     public TicketOrder() {
     }
 
-    public TicketOrder(Ticket ticket, Client client, PaymentMethod paymentType, int numberOfTickets, String qrCodeId) {
+    public TicketOrder(Ticket ticket, Client client, PaymentMethod paymentType, int numberOfTickets, String qrCodeId, LocalDateTime dateTime) {
         this.ticket = ticket;
         this.client = client;
         this.paymentType = paymentType;
         this.numberOfTickets = numberOfTickets;
         this.qrCodeId = qrCodeId;
+        this.dateTime = dateTime;
     }
 
     public void setTicket(Ticket ticket) {
@@ -55,5 +60,9 @@ public class TicketOrder {
 
     public void setQrCodeId(String qrCodeId) {
         this.qrCodeId = qrCodeId;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 }
