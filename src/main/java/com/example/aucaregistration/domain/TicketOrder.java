@@ -12,11 +12,11 @@ public class TicketOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "ticketId")
     Ticket ticket;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "clientId")
     Client client;
 

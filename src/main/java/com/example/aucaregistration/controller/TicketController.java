@@ -45,7 +45,7 @@ public class TicketController {
     }
 
     @DeleteMapping(value = "/{ticketId}")
-    public ResponseEntity<?> deleteTicket(@PathVariable Long ticketId) {
+    public ResponseEntity<?> deleteTicket(@PathVariable int ticketId) {
         try {
             ticketService.deleteTicketById(ticketId);
             return new ResponseEntity<>("Ticket Deleted", HttpStatus.NO_CONTENT);

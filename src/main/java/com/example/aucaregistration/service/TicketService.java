@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TicketService {
@@ -24,11 +25,15 @@ public class TicketService {
         }
     }
 
+    public Optional<Ticket> getTicket(int ticketId) throws Exception {
+        return ticketRepository.findById(ticketId);
+    }
+
     public List<Ticket> getTickets() {
         return ticketRepository.findAll();
     }
 
-    public void deleteTicketById(Long ticketId) throws Exception {
+    public void deleteTicketById(int ticketId) throws Exception {
         if (ticketRepository.findById(ticketId).isPresent()) {
             ticketRepository.deleteById(ticketId);
         } else {
