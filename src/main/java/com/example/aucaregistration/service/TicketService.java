@@ -1,5 +1,6 @@
 package com.example.aucaregistration.service;
 
+import com.example.aucaregistration.domain.StopLocation;
 import com.example.aucaregistration.domain.Ticket;
 import com.example.aucaregistration.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,9 @@ public class TicketService {
         } else {
             throw new Exception("Ticket not found");
         }
+    }
+
+    public List<Ticket> findTickets(String origin, String destination) {
+        return ticketRepository.findByOriginOrDestination(origin, destination);
     }
 }

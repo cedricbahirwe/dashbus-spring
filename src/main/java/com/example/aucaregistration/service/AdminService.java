@@ -30,6 +30,15 @@ public class AdminService {
         return adminRepository.findAll();
     }
 
+    public Admin getAdmin(int adminId) throws  Exception {
+        Optional<Admin> optionalAdmin = adminRepository.findById(adminId);
+        if (optionalAdmin.isPresent()) {
+            return optionalAdmin.get();
+        } else {
+            throw new Exception("User not found");
+        }
+    }
+
     public void deleteAdminById(int adminId) throws Exception {
         if (adminRepository.findById(adminId).isPresent()) {
             adminRepository.deleteById(adminId);

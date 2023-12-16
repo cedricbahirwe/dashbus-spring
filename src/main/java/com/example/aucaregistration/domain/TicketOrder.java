@@ -1,6 +1,8 @@
 package com.example.aucaregistration.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -20,6 +22,7 @@ public class TicketOrder {
 
     @ManyToOne
     @JoinColumn(name = "clientId")
+    @JsonBackReference
     Client client;
 
     PaymentMethod paymentType;

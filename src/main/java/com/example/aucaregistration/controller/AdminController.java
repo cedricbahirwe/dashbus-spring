@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -53,6 +55,16 @@ public class AdminController {
         return ResponseEntity.ok(admins);
     }
 
+    @GetMapping(value = "/{adminId}")
+    public ResponseEntity<?> getAdmin(@PathVariable int adminId) {
+        try {
+            Admin admin = adminService.getAdmin(adminId);
+            return new ResponseEntity<>(admin, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
     @DeleteMapping(value = "/{adminId}")
     public ResponseEntity<?> deleteAdmin(@PathVariable int adminId) {
         try {
@@ -91,7 +103,10 @@ public class AdminController {
             if (hashedPassword.equals(existingAdmin.getPassword())) {
                 return new ResponseEntity<>(existingAdmin, HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("Password does not match", HttpStatus.UNAUTHORIZED);
+                Map<String, Object> errorResponse = new HashMap<>();
+                errorResponse.put("error", "Password mismatch");
+                errorResponse.put("message", "Password does not match");
+                return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);

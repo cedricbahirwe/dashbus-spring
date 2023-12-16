@@ -1,11 +1,13 @@
 package com.example.aucaregistration.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Entity
@@ -37,6 +39,10 @@ public class Client {
     @CreationTimestamp
     @Column(name = "joined_date", updatable = false)
     LocalDateTime joinedDate = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    List<TicketOrder> tickets;
 
     public Client() {
     }

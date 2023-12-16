@@ -29,6 +29,15 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
+    public Client getClient(int clientId) throws  Exception {
+        Optional<Client> optionalClient = clientRepository.findById(clientId);
+        if (optionalClient.isPresent()) {
+            return optionalClient.get();
+        } else {
+            throw new Exception("User not found");
+        }
+    }
+
     public void deleteClientById(int clientId) throws Exception {
         if (clientRepository.findById(clientId).isPresent()) {
             clientRepository.deleteById(clientId);

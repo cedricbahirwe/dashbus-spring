@@ -1,6 +1,7 @@
 package com.example.aucaregistration.controller;
 
 import com.example.aucaregistration.domain.Ticket;
+import com.example.aucaregistration.service.LocationService;
 import com.example.aucaregistration.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,9 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping(
         value = "/ticket",
-        consumes = {MediaType.APPLICATION_JSON_VALUE},
+//        consumes = {MediaType.APPLICATION_JSON_VALUE},
         produces = {MediaType.APPLICATION_JSON_VALUE}
 )
 public class TicketController {
@@ -49,6 +51,19 @@ public class TicketController {
         try {
             ticketService.deleteTicketById(ticketId);
             return new ResponseEntity<>("Ticket Deleted", HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping(value = "/search/{start}/{end}")
+    public ResponseEntity<?> searchTickets(
+            @PathVariable String start,
+            @PathVariable String end
+            ) {
+        try {
+            List<Ticket> tickets = ticketService.findTickets(start, end);
+            return new ResponseEntity<>(tickets, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

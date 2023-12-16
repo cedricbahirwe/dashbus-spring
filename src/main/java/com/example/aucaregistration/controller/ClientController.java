@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -44,6 +46,16 @@ public class ClientController {
             }
         } else {
             return new ResponseEntity<>("Empty data not allowed!", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping(value = "/{clientId}")
+    public ResponseEntity<?> getClient(@PathVariable int clientId) {
+        try {
+            Client client = clientService.getClient(clientId);
+            return new ResponseEntity<>(client, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -89,7 +101,10 @@ public class ClientController {
             if (hashedPassword.equals(existingClient.getPassword())) {
                 return new ResponseEntity<>(existingClient, HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("Password does not match", HttpStatus.UNAUTHORIZED);
+                Map<String, Object> errorResponse = new HashMap<>();
+                errorResponse.put("error", "Password mismatch");
+                errorResponse.put("message", "Password does not match");
+                return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
