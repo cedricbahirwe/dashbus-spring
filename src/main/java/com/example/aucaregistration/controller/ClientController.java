@@ -18,8 +18,8 @@ import java.util.Map;
 @RestController
 @CrossOrigin("*")
 @RequestMapping(
-        value = "/client",
-        produces = {MediaType.APPLICATION_JSON_VALUE}
+        value = "client"
+//        produces = {MediaType.APPLICATION_JSON_VALUE}
 )
 public class ClientController {
 
@@ -59,7 +59,7 @@ public class ClientController {
         }
     }
 
-    @GetMapping(value = "/")
+    @GetMapping
     public ResponseEntity<List<Client>> getAllClients() {
         List<Client> clients = clientService.getClients();
         return ResponseEntity.ok(clients);
