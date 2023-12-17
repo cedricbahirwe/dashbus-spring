@@ -54,7 +54,65 @@ book bus tickets online for long-distance trips. The system aims to address the 
 7. **Security Measures:**
     - Implement security measures to protect user data, transactions, and the overall integrity of the system.
     - Use encryption for sensitive information, and follow best practices for securing the backend.
+    - 
+## 2. Project Plan
 
+This part can also be found in [PDF](/projectplan.pdf) format.
+
+### Scope of the Project
+The Bus Ticketing System project encompasses the following key features and functionalities:
+
+- User Registration and Authentication
+- Bus and Route Management
+- Ticket Booking and Reservation
+- User Profiles
+
+### Timeline (1-Week Prototype):**
+
+1. **Project Setup and Backend Development (Days 1-2):**
+   - Define project scope and requirements.
+   - Implement backend functionalities for user registration, authentication, and basic bus management.
+
+2. **Frontend Development and Integration (Days 3-4):**
+   - Design and implement basic user interfaces for passenger interactions.
+   - Integrate frontend and backend components for seamless interactions.
+
+3. **Documentation and Finalization (Days 5-6):**
+   - Document the codebase and key functionalities.
+   - Prepare for a prototype release.
+
+4. **Deploy and Release (Day 7):**
+   - Deploy the prototype for testing and feedback.
+   - Set up development environment and version control.
+
+### Resources
+
+1. **Development Team:**
+   - One Developer (Myself)
+2. **Testing:**
+   - Manual Testing during development.
+3. **Documentation:**
+   - I concurrently code and document key functionalities.
+4. **External Dependencies:**
+   - Minimize external dependencies to expedite development.
+   - If necessary, choose lightweight and easily integratable third-party tools or services.
+
+### Deployment and Release
+
+1. **Deployment:**
+   - Deploy the prototype on a local environment or a lightweight cloud service (e.g., Render).
+2. **Testing and Feedback:**
+   - Conduct additional testing in the deployment environment.
+   
+### Documentation
+1. **Technical Documentation:**
+   - High-level architecture overview.
+   - Key components and their interactions.
+2. **User Guide:**
+   - Quick instructions for user registration.
+   - Steps for booking a bus ticket.
+3. **Deployment Guide:**
+   - Basic setup instructions for the development environment.
 
 ## 3. Source Code
 
