@@ -55,30 +55,120 @@ book bus tickets online for long-distance trips. The system aims to address the 
     - Implement security measures to protect user data, transactions, and the overall integrity of the system.
     - Use encryption for sensitive information, and follow best practices for securing the backend.
 
-8. **API Documentation:**
-    - Create comprehensive API documentation to guide developers and third-party integrations.
 
-These functionalities can serve as a foundation for your Spring Boot backend. Feel free to customize and expand based on your specific project requirements and goals. If you have any specific areas you'd like to focus on or if you have additional requirements, please let me know.
+## 3. Source Code
 
+Source Code: https://github.com/cedricbahirwe/dashbus-spring
 
+Clone the project:
+   - **SSH**: `git clone git@github.com:cedricbahirwe/dashbus-spring.git`
+   - **HTTPS**: `git clone https://github.com/cedricbahirwe/dashbus-spring.git`
 
+To run the project, I recommend using an appropriate IDE such as [IntelliJ IDEA](https://www.jetbrains.com/idea).
 
-
-<!--
-| Some Results Screenshots |
-|:-------------:|
-| 1. List of Students per semester |
-| ![Question 1](https://github.com/cedricbahirwe/23455_Aganze_Bahirwe/assets/49038614/ae3e8b04-ce35-449d-b8cc-daf23e9560c0) |
-| 2. List of Students per department and Semester |
-| ![Question 2](https://github.com/cedricbahirwe/23455_Aganze_Bahirwe/assets/49038614/d761579b-2c01-4783-bea3-6207e9a0ff1b)  |
-| 3. List of Students per Course and Semester |
-| ![Question 3](https://github.com/cedricbahirwe/23455_Aganze_Bahirwe/assets/49038614/8fec35a7-7db7-4f18-a9d1-e3d2e2caa3cf)  |
-| 4. List of Courses per Department and Semester |
-| ![Question 4](https://github.com/cedricbahirwe/23455_Aganze_Bahirwe/assets/49038614/e4353388-0e13-45a8-b31d-9e59cb5729f0)  |
-| 5. List of Courses per Student |
-| ![Question 5](https://github.com/cedricbahirwe/23455_Aganze_Bahirwe/assets/49038614/32fb6e38-28a2-49ab-887e-8b3a8257a665)  |
--->
-
+## 4. Database Schema
 <img width="1080" alt="shots" src="https://github.com/cedricbahirwe/dashbus-spring/assets/49038614/2019297b-2bc4-4105-9db5-4918c0243df3">
 
+## 5. User Documentation:
 
+This application uses mainly Spring Boot and different associated dependencies.
+
+So first thing we need to do is to install all dependencies present in our `pom.xml` file.
+#### DB Credentials `(If needed)`:
+- `username`: root
+- `password`: root
+
+The React client is found at https://github.com/cedricbahirwe/dashbus
+
+## 6. Technical Documentation
+
+This documentation can also be found in [PDF](https://github.com/cedricbahirwe/) format.
+#### Application Overview:
+
+The **DashBus** project is a Spring Boot-based Bus Ticketing System designed to streamline the booking process for long-distance trips. 
+
+Below is an overview of the application's architecture, implementation details, and key components.
+
+#### Project Structure:
+
+The application follows a modular structure organized under one package with the following components:
+
+- **controller:** Contains controllers responsible for handling HTTP requests and managing the flow of data between the client and the backend.
+
+- **domain:** Includes domain objects representing entities within the application, such as Ticket, User, TicketOrder, etc.
+
+- **repository:** Houses repositories responsible for data access and interaction with the underlying database.
+
+- **service:** Implements business logic and services necessary for the application's functionality.
+
+#### Libraries and Frameworks:
+
+The project utilizes the following libraries and frameworks:
+
+1. **Spring Boot:**
+   - **Description:** The core framework providing a simplified, convention-over-configuration, opinionated approach to building Spring-based applications.
+   - **Usage:** Used as the foundation for developing the backend components of the Bus Ticketing System.
+
+2. **Spring Boot Starter Web:**
+   - **Description:** A starter for building web applications with Spring MVC.
+   - **Usage:** Enables the development of RESTful APIs and handles HTTP requests.
+
+3. **Spring Boot DevTools:**
+   - **Description:** Provides development-time tools to enhance the development experience.
+   - **Usage:** Enables automatic application restarts and other development-oriented features.
+
+4. **H2 Database:**
+   - **Description:** An in-memory database for development and testing purposes.
+   - **Usage:** Used as a runtime dependency to facilitate local data storage during development.
+
+5. **MySQL Connector/J:**
+   - **Description:** The official MySQL JDBC driver for connecting the application to a MySQL database.
+   - **Usage:** Enables the application to interact with a MySQL database in production environments.
+
+6. **Lombok:**
+   - **Description:** A library to simplify Java code by reducing boilerplate code through annotations.
+   - **Usage:** Streamlines the creation of entity classes and getter/setter methods.
+
+7. **Spring Boot Starter Test:**
+   - **Description:** A starter for testing Spring Boot applications.
+   - **Usage:** Provides testing support for the application, ensuring code reliability.
+
+8. **Spring Boot Starter Data JPA:**
+   - **Description:** A starter for using Spring Data JPA with Hibernate.
+   - **Usage:** Simplifies data access through the Java Persistence API (JPA) and Hibernate.
+
+9. **Tomcat JDBC:**
+   - **Description:** A connection pool provided by Tomcat.
+   - **Usage:** Helps manage database connections efficiently.
+
+10. **Spring Security Starter:**
+    - **Description**: Integrates Spring Security into the Bus Ticketing System, providing default configurations for authentication, authorization, and security best practices.
+
+#### Application Flow:
+
+1. **Controller Layer:**
+   - Handles incoming HTTP requests.
+   - Orchestrates the flow of data between the client and the backend.
+
+2. **Service Layer:**
+   - Implements business logic and services.
+   - Interacts with the repository layer for data access.
+
+3. **Repository Layer:**
+   - Manages data access and communication with the underlying database.
+
+4. **Domain Layer:**
+   - Defines entities representing the core data structure of the application.
+
+#### Build and Execution:
+
+The project uses Maven as the build tool. The Spring Boot Maven Plugin is configured to package the application as a standalone JAR file. The application can be executed using the `java -jar` command.
+
+You can also use an appropriate IDE to run the project, I recommend using [IntelliJ IDEA](https://www.jetbrains.com/idea).
+
+### Conclusion:
+
+This Bus Ticketing System leverages the Spring Boot framework and associated technologies to provide a scalable, 
+efficient, and modular solution for online bus ticket bookings. 
+
+The use of industry-standard libraries and frameworks contributes to the application's maintainability and robustness.
