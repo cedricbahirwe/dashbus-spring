@@ -54,7 +54,7 @@ book bus tickets online for long-distance trips. The system aims to address the 
 7. **Security Measures:**
     - Implement security measures to protect user data, transactions, and the overall integrity of the system.
     - Use encryption for sensitive information, and follow best practices for securing the backend.
-    - 
+   
 ## 2. Project Plan
 
 This part can also be found in [PDF](/projectplan.pdf) format.
@@ -67,7 +67,7 @@ The Bus Ticketing System project encompasses the following key features and func
 - Ticket Booking and Reservation
 - User Profiles
 
-### Timeline (1-Week Prototype):**
+### Timeline (1-Week Prototype):
 
 1. **Project Setup and Backend Development (Days 1-2):**
    - Define project scope and requirements.
