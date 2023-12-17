@@ -82,7 +82,7 @@ The React client is found at https://github.com/cedricbahirwe/dashbus
 
 ## 6. Technical Documentation
 
-This documentation can also be found in [PDF](https://github.com/cedricbahirwe/) format.
+This documentation can also be found in [PDF](/techdoc.pdf) format.
 #### Application Overview:
 
 The **DashBus** project is a Spring Boot-based Bus Ticketing System designed to streamline the booking process for long-distance trips. 
