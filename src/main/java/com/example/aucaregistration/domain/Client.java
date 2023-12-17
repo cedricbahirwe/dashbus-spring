@@ -9,7 +9,9 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -38,8 +40,26 @@ public class Client {
     @Column(name = "joined_date", updatable = false)
     private LocalDateTime joinedDate = LocalDateTime.now();
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<TicketOrder> tickets;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable( name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public Client(String username, String firstName, String lastName, LocalDate dob, String phoneNumber, String email, String password) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+    }
+
+    //    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+//    @JsonManagedReference
+//    private List<TicketOrder> tickets;
+
+
 
 }
