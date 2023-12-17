@@ -1,7 +1,7 @@
 # Bus Ticketing System: (DashBus)
 ### ID: 23455
 
-A Bus ticket booking application made using Spring Boot (Backend API side) and React JS (Frontend Web Side)
+A Bus ticket booking application made using Spring Boot (Backend API side) and [React JS](https://github.com/cedricbahirwe/dashbus) (Frontend Web Side)
 
 
 ## 1. Project Requirements
