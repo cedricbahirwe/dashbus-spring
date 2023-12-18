@@ -18,10 +18,9 @@ import java.util.Map;
 import java.util.Objects;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping(
-        value = "/ticketOrder",
-        consumes = {MediaType.APPLICATION_JSON_VALUE},
-        produces = {MediaType.APPLICATION_JSON_VALUE}
+        value = "/ticketOrder"
 )
 public class TicketOrderController {
     private final TicketOrderService ticketOrderService;
@@ -96,6 +95,7 @@ public class TicketOrderController {
             ticketOrderService.deleteTicketOrderById(ticketOrderId);
             return new ResponseEntity<>("TicketOrder Deleted", HttpStatus.NO_CONTENT);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }

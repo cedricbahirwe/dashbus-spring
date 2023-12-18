@@ -1,6 +1,7 @@
 package com.example.aucaregistration.controller;
 
 import com.example.aucaregistration.domain.Client;
+import com.example.aucaregistration.response.MessageResponse;
 import com.example.aucaregistration.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,6 @@ import java.util.Map;
 @CrossOrigin("*")
 @RequestMapping(
         value = "client"
-//        produces = {MediaType.APPLICATION_JSON_VALUE}
 )
 public class ClientController {
 
@@ -34,6 +34,18 @@ public class ClientController {
     public ResponseEntity<?> saveClient(@RequestBody Client client) {
         if (client != null) {
             try {
+
+                if (clientService.existsByUsername(client.getUsername())) {
+                    return ResponseEntity
+                            .badRequest()
+                            .body(new MessageResponse("Error: Username is already taken!"));
+                }
+
+                if (clientService.existsByEmail(client.getEmail())) {
+                    return ResponseEntity
+                            .badRequest()
+                            .body(new MessageResponse("Error: Email is already in use!"));
+                }
 
                 String passwordToHash = client.getPassword();
                 String hashedPassword = encrypt(passwordToHash);

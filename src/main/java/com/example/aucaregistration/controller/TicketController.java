@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping(
-        value = "/ticket",
-//        consumes = {MediaType.APPLICATION_JSON_VALUE},
-        produces = {MediaType.APPLICATION_JSON_VALUE}
+        value = "/ticket"
 )
 public class TicketController {
     private final TicketService ticketService;

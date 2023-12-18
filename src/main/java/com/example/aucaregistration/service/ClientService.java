@@ -63,4 +63,12 @@ public class ClientService {
             throw new Exception("Client with the provided username was not found.");
         }
     }
+
+    public Boolean existsByUsername(String username) {
+        return clientRepository.existsByUsername(username);
+    }
+
+    public Boolean existsByEmail(String email) {
+        return clientRepository.existsByEmail(email);
+    }
 }

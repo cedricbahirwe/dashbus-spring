@@ -21,7 +21,7 @@ public class Ticket {
 
     double price;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "adminId")
     Admin admin;
 
