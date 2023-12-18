@@ -1,7 +1,9 @@
 # Bus Ticketing System: (DashBus)
 ### ID: 23455
 
-### Please find the Frontend Project at [this Link](https://github.com/cedricbahirwe/dashbus)
+## Please find the Frontend Project at [this Link](https://github.com/cedricbahirwe/dashbus)
+
+## The documentation below can also be found in the [doc](/doc) directory
 
 A Bus ticket booking application made using Spring Boot (Backend API side) and [React JS](https://github.com/cedricbahirwe/dashbus) (Frontend Web Side)
 
@@ -9,14 +11,13 @@ A Bus ticket booking application made using Spring Boot (Backend API side) and [
 ## 1. Project Requirements
 
 ### Project Purpose:
-The main goal of the Spring Boot backend project is to develop a Bus Ticketing System that enables users to conveniently
-book bus tickets online for long-distance trips. The system aims to address the challenges faced by crowded bus parks, providing a digital solution to streamline the ticket booking process. Additionally, the project contributes to the broader objective of digitization in the transportation sector.
+The main goal of the Spring Boot backend project is to develop a Bus Ticketing System that enables users to book bus tickets online for long-distance trips conveniently. The system aims to address the challenges faced by crowded bus parks, providing a digital solution to streamline the ticket booking process. Additionally, the project contributes to the broader objective of digitization in the transportation sector.
 
 
 
 ### Expected Outcomes:
 
-1. **User-Friendly Booking System**: A user-friendly interface that allows passengers to easily search for buses, and securely book tickets online.
+1. **User-Friendly Booking System**: A user-friendly interface that allows passengers to search for buses easily, and securely book tickets online.
 
 2. **Reduced Crowds at Bus Parks**: Minimize the congestion and waiting times at bus parks by providing a digital platform for ticket booking, reducing the need for on-site ticket purchases.
 
@@ -24,9 +25,9 @@ book bus tickets online for long-distance trips. The system aims to address the 
 
 4. **Automated Ticketing Process**: Implement an automated ticket generation system that issues digital tickets upon successful booking, reducing manual processes and the likelihood of errors.
 
-5. **Real-time Availability Updates**: Provide real-time updates on bus availability, schedules, ensuring transparency and informed decision-making.
+5. **Real-time Availability Updates**: Provide real-time updates on bus availability, and schedules, ensuring transparency and informed decision-making.
 
-6. **User Accounts and Profiles**: Allow users to create accounts, manage their booking history for a more personalized and efficient experience.
+6. **User Accounts and Profiles**: Allow users to create accounts, and manage their booking history for a more personalized and efficient experience.
 
 
 ### Functionality:
@@ -36,7 +37,7 @@ book bus tickets online for long-distance trips. The system aims to address the 
     - User roles (e.g., passengers, administrators) with appropriate access permissions.
 
 2. **Bus Information Management:**
-    - Maintain a database of available buses, including details such as routes and schedules availability.
+    - Maintain a database of available buses, including details such as routes and schedule availability.
     - Support operations for adding, updating, and removing bus information.
 
 3. **Booking Management:**
@@ -59,7 +60,7 @@ book bus tickets online for long-distance trips. The system aims to address the 
    
 ## 2. Project Plan
 
-This part can also be found in [PDF](/projectplan.pdf) format.
+This part can also be found in [PDF](/doc/projectplan.pdf) format.
 
 ### Scope of the Project
 The Bus Ticketing System project encompasses the following key features and functionalities:
@@ -142,7 +143,7 @@ The React client is found at https://github.com/cedricbahirwe/dashbus
 
 ## 6. Technical Documentation
 
-This documentation can also be found in [PDF](/techdoc.pdf) format.
+This documentation can also be found in [PDF](/doc/techdoc.pdf) format.
 #### Application Overview:
 
 The **DashBus** project is a Spring Boot-based Bus Ticketing System designed to streamline the booking process for long-distance trips. 
